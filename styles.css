@@ -11,7 +11,48 @@
 	line-height: 0;
 	height: 0;
 }
+nav {
+    padding: 5px 10px;
+    display: flex;
+    background-color: #333;
+    color: whitesmoke;
+    align-items: center;
 
+    grid-column: 1/-1;
+}
+
+h1 {
+    font-size: 25px;
+    padding-right: 5px;
+    border-right: solid whitesmoke 5px;
+    margin-right: 10px;
+}
+
+.logo {
+    font-size: 40px;
+}
+
+.other-pages {
+    display: flex;
+    gap: 15px;
+}
+
+a:link {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a:visited {
+    color: whitesmoke;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+a:active {
+    text-decoration: underline;
+}
 .clearfix {
 	display: inline-block;
 }
