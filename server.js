@@ -33,7 +33,7 @@ function handler(req, resp){
 		main.html already has the routes to other static files so there is no need 
 		*/
         resp.writeHead(200, {"Content-Type" : "text/html"});
-        var redirectFile = fs.readFileSync("main.html");
+        var redirectFile = fs.readFileSync("index.html");
         resp.write(redirectFile);
         resp.end();
     }
