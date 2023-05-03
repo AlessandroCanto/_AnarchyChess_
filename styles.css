@@ -11,7 +11,7 @@
 	line-height: 0;
 	height: 0;
 }
-nav {
+.nav {
     padding: 5px 10px;
     display: flex;
     background-color: #333;
@@ -21,7 +21,7 @@ nav {
     grid-column: 1/-1;
 }
 
-h1 {
+.h1 {
     font-size: 25px;
     padding-right: 5px;
     border-right: solid whitesmoke 5px;
@@ -37,7 +37,7 @@ h1 {
     gap: 15px;
 }
 
-a:link {
+.a:link {
     color: whitesmoke;
     text-decoration: none;
 }
