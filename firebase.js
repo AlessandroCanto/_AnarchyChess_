@@ -21,6 +21,7 @@ const db = getDatabase(app);
 
 const inputBox = document.getElementById('inputBox');
 const saveBtn = document.getElementById('saveBtn');
+const displayed = document.getElementById('displayed')
 const displayTag = document.getElementById('displayBox');
 
 function saveData() {
