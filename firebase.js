@@ -44,11 +44,14 @@ function saveData() {
     inputBox.value = '';
 }
 function fetchData () {
-    const retrievedData = db.ref('entries');
-    on('value', function(snapshot) {
-        var childData = snapshot.node_.children_.root_.value.value_;
-        console.log("snapshot.node_.children_.root_.value.value_: ", snapshot.node_.children_.root_.value.value_)
-    };
+    const db = getDatabase();
+    const ref = db.ref('entries');
+
+    ref.on('value', (snapshot) => {
+        console.log(snapshot.val());
+    }, (errorObject) => {
+        console.log('The read failed: ' + errorObject.name);
+    });
 }
 
 
