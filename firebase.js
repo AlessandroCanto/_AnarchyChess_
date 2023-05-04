@@ -26,50 +26,37 @@ const saveBtn = document.getElementById('saveBtn');
 const displayed = document.getElementById('displayed')
 const displayTag = document.getElementById('displayBox');
 
-function saveData() {
-    // Get the input value
-    const inputValue = inputBox.value;
+const db = firebase.database();
 
-    // Create a reference to a new location in the database
-    const newEntryRef = push(ref(db, 'entries'));
+// Get references to the input box, send button, and recent feed div
+const suggestionInput = document.getElementById('suggestionInput');
+const sendBtn = document.getElementById('sendBtn');
+const recentFeed = document.getElementById('recentFeed');
 
-    // Save the input value to the new location
-    set(newEntryRef, inputValue, (error) => {
-        if (error) {
-            console.error('Data could not be saved.', error);
-        } else {
-            console.log('Data saved successfully.');
-        }
+// Function to send data to Firebase
+function sendData() {
+    const inputValue = suggestionInput.value;
+    const newSuggestionRef = db.ref('suggestions').push();
+    newSuggestionRef.set(inputValue);
+    suggestionInput.value = '';
+}
+
+// Add a click event listener to the send button
+sendBtn.addEventListener('click', sendData);
+
+// Function to update the recent feed div
+function updateRecentFeed(snapshot) {
+    const suggestionItems = [];
+    snapshot.forEach(childSnapshot => {
+        suggestionItems.unshift(`<div class="suggestion-item">${childSnapshot.val()}</div>`);
     });
 
-    // Clear the input box
-    inputBox.value = '';
-}
-async function fetchData() {
-    const entriesRef = ref(db, 'entries');
-
-    try {
-        const snapshot = await get(entriesRef);
-        displayTag.innerHTML = ""; // Clear previous content
-
-        if (snapshot.exists()) {
-            snapshot.forEach((childSnapshot) => {
-                const childData = childSnapshot.val();
-
-                const entryElement = document.createElement('div');
-                entryElement.textContent = childData;
-                displayTag.appendChild(entryElement);
-            });
-        } else {
-            console.log("No data available");
-        }
-    } catch (error) {
-        console.error("Error fetching data: ", error);
-    }
+    recentFeed.innerHTML = suggestionItems.slice(0, 5).join('');
 }
 
-
+// Listen for changes in the Firebase data
+db.ref('suggestions').limitToLast(5).on('value', updateRecentFeed);
 
 // Add a click event listener to the save button
 saveBtn.addEventListener('click', saveData);
-displayed.addEventListener('click', fetchData);
+
