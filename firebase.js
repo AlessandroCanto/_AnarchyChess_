@@ -43,11 +43,22 @@ function saveData() {
     // Clear the input box
     inputBox.value = '';
 }
-function fetchData () {
-    newEntryRef.on('value', (snapshot) => {
-        console.log("no");
+function fetchData() {
+    const entriesRef = ref(db, 'entries');
+
+    onValue(entriesRef, (snapshot) => {
+        displayTag.innerHTML = ""; // Clear previous content
+
+        snapshot.forEach((childSnapshot) => {
+            const childKey = childSnapshot.key;
+            const childData = childSnapshot.val();
+
+            const entryElement = document.createElement('div');
+            entryElement.textContent = childData;
+            displayTag.appendChild(entryElement);
+        });
     }, (errorObject) => {
-        console.log('The read failed: ');
+        console.log('The read failed: ' + errorObject.code);
     });
 }
 
