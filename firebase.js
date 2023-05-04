@@ -21,6 +21,7 @@ const db = getDatabase(app);
 
 const inputBox = document.getElementById('inputBox');
 const saveBtn = document.getElementById('saveBtn');
+const displayTag = document.getElementById('displayBox');
 
 function saveData() {
     // Get the input value
@@ -43,7 +44,7 @@ function saveData() {
 }
 function fetchData () {
     const retrievedData = db.ref('entries');
-    leadsRef.on('value', function(snapshot) {
+    on('value', function(snapshot) {
         var childData = snapshot.node_.children_.root_.value.value_;
         console.log("snapshot.node_.children_.root_.value.value_: ", snapshot.node_.children_.root_.value.value_)
       });
@@ -53,3 +54,4 @@ function fetchData () {
 
 // Add a click event listener to the save button
 saveBtn.addEventListener('click', saveData);
+displayed.addEventListener('click', fetchData);
