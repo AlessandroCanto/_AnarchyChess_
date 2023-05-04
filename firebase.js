@@ -48,9 +48,9 @@ function fetchData () {
     on('value', function(snapshot) {
         var childData = snapshot.node_.children_.root_.value.value_;
         console.log("snapshot.node_.children_.root_.value.value_: ", snapshot.node_.children_.root_.value.value_)
-      });
-  }
+    };
 }
+
 
 
 
