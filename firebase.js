@@ -3,7 +3,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase
 import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import { get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAmtfD6pxasbfH4Iq6BhtA6JqEC7a7srt4",
@@ -21,13 +20,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
-const inputBox = document.getElementById('inputBox');
-const saveBtn = document.getElementById('saveBtn');
-const displayed = document.getElementById('displayed')
-const displayTag = document.getElementById('displayBox');
-
-const db = firebase.database();
-
 // Get references to the input box, send button, and recent feed div
 const suggestionInput = document.getElementById('suggestionInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -36,8 +28,8 @@ const recentFeed = document.getElementById('recentFeed');
 // Function to send data to Firebase
 function sendData() {
     const inputValue = suggestionInput.value;
-    const newSuggestionRef = db.ref('suggestions').push();
-    newSuggestionRef.set(inputValue);
+    const newSuggestionRef = ref(db, 'suggestions').push();
+    set(newSuggestionRef, inputValue);
     suggestionInput.value = '';
 }
 
@@ -55,8 +47,4 @@ function updateRecentFeed(snapshot) {
 }
 
 // Listen for changes in the Firebase data
-db.ref('suggestions').limitToLast(5).on('value', updateRecentFeed);
-
-// Add a click event listener to the save button
-saveBtn.addEventListener('click', saveData);
-
+ref(db, 'suggestions').limitToLast(5).on('value', updateRecentFeed);
