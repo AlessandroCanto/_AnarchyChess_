@@ -43,25 +43,28 @@ function saveData() {
     // Clear the input box
     inputBox.value = '';
 }
-function fetchData() {
+async function fetchData() {
     const entriesRef = ref(db, 'entries');
 
-    onValue(entriesRef, (snapshot) => {
+    try {
+        const snapshot = await get(entriesRef);
         displayTag.innerHTML = ""; // Clear previous content
 
-        snapshot.forEach((childSnapshot) => {
-            const childKey = childSnapshot.key;
-            const childData = childSnapshot.val();
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
 
-            const entryElement = document.createElement('div');
-            entryElement.textContent = childData;
-            displayTag.appendChild(entryElement);
-        });
-    }, (errorObject) => {
-        console.log('The read failed: ' + errorObject.code);
-    });
+                const entryElement = document.createElement('div');
+                entryElement.textContent = childData;
+                displayTag.appendChild(entryElement);
+            });
+        } else {
+            console.log("No data available");
+        }
+    } catch (error) {
+        console.error("Error fetching data: ", error);
+    }
 }
-
 
 
 
