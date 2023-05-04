@@ -2,7 +2,7 @@ CHESSAPP.onlinePlay = {
 	
 	sk : null,
 	connect: function(stg, callback){
-		var hostPort = "http://localhost:" + CHESSAPP.globalSettings.port;
+		var hostPort = "https://anarchy-chess1.herokuapp.com"
 		
 		this.sk = io.connect(hostPort);
 		
