@@ -44,7 +44,7 @@ function saveData() {
     inputBox.value = '';
 }
 function fetchData () {
-    ref.on('value', (snapshot) => {
+    on('value', (snapshot) => {
         console.log(snapshot.val());
     }, (errorObject) => {
         console.log('The read failed: ' + errorObject.name);
