@@ -41,6 +41,15 @@ function saveData() {
     // Clear the input box
     inputBox.value = '';
 }
+function fetchData () {
+    const retrievedData = db.ref('entries');
+    leadsRef.on('value', function(snapshot) {
+        var childData = snapshot.node_.children_.root_.value.value_;
+        console.log("snapshot.node_.children_.root_.value.value_: ", snapshot.node_.children_.root_.value.value_)
+      });
+  });
+}
+
 
 // Add a click event listener to the save button
 saveBtn.addEventListener('click', saveData);
