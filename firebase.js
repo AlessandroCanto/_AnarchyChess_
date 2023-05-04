@@ -44,10 +44,10 @@ function saveData() {
     inputBox.value = '';
 }
 function fetchData () {
-    on('value', (snapshot) => {
-        console.log(snapshot.val());
+    newEntryRef.on('value', (snapshot) => {
+        console.log("no");
     }, (errorObject) => {
-        console.log('The read failed: ' + errorObject.name);
+        console.log('The read failed: ');
     });
 }
 
