@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 
-.body {
+body {
     font-family: sans-serif;
 }
 
@@ -26,7 +26,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.nav {
+
+nav {
     padding: 5px 10px;
     display: flex;
     background-color: #333;
@@ -36,7 +37,7 @@
     grid-column: 1/-1;
 }
 
-.h1 {
+h1 {
     font-size: 25px;
     padding-right: 5px;
     border-right: solid whitesmoke 5px;
@@ -52,7 +53,7 @@
     gap: 15px;
 }
 
-.a:link {
+a:link {
     color: whitesmoke;
     text-decoration: none;
 }
