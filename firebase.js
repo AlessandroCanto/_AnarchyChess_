@@ -44,7 +44,7 @@ function saveData() {
     inputBox.value = '';
 }
 function fetchData () {
-    const db = getDatabase();
+    const db = getDatabase(app);
     const ref = db.ref('entries');
 
     ref.on('value', (snapshot) => {
