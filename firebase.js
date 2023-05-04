@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
-import { get } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+import { getDatabase, ref, push, set, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -28,7 +27,7 @@ const recentFeed = document.getElementById('recentFeed');
 // Function to send data to Firebase
 function sendData() {
     const inputValue = suggestionInput.value;
-    const newSuggestionRef = ref(db, 'suggestions').push();
+    const newSuggestionRef = push(ref(db, 'suggestions'));
     set(newSuggestionRef, inputValue);
     suggestionInput.value = '';
 }
@@ -47,4 +46,5 @@ function updateRecentFeed(snapshot) {
 }
 
 // Listen for changes in the Firebase data
-ref(db, 'suggestions').limitToLast(5).on('value', updateRecentFeed);
+const suggestionsQuery = query(ref(db, 'suggestions'), limitToLast(5));
+onValue(suggestionsQuery, updateRecentFeed);
