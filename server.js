@@ -6,14 +6,14 @@ var app = require('http').createServer(handler),
     fs = require("fs") ,
     url = require("url"),
     port = process.env.PORT || 5000,
-    cors = require('cors');
+    
     queue = {
         'W': [],
         'B': [],
         'U': [] //undefined (player does not care which color)
     }
 app.listen(port);
-app.use(cors());
+
 //listen to 
 console.log("HTTP server listening on port " + port);
 //reads the request and determiens what to do with it
