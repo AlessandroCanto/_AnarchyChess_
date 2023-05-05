@@ -78,8 +78,10 @@ function updateRecentFeed(snapshot) {
 
     // Calculate and display the contribution score for the current user
     const score = calculateContributionScore(userId, snapshot);
-    console.log(`Contribution score for user ${userId}: ${score}`);
+    const contributionScoreDiv = document.getElementById('contributionScore');
+    contributionScoreDiv.innerHTML = `Contribution score for user ${userId}: ${score}`;
 }
+
 
 // Listen for changes in the Firebase data
 const suggestionsQuery = query(ref(db, 'suggestions'), limitToLast(5));
