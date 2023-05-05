@@ -79,7 +79,7 @@ function updateRecentFeed(snapshot) {
     // Calculate and display the contribution score for the current user
     const score = calculateContributionScore(userId, snapshot);
     const contributionScoreDiv = document.getElementById('contributionScore');
-    contributionScoreDiv.innerHTML = `Contribution score for user ${userId}: ${score}`;
+    contributionScoreDiv.innerHTML = `Your contribution score is ${score}`;
 }
 
 
