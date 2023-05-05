@@ -2,22 +2,24 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
 import { getDatabase, ref, push, set, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
+//creates a unique id and caches in websites' cookies. 
 function createUserId() {
   const userId = uuid.v4();
   localStorage.setItem('userId', userId);
   return userId;
 }
 
+//fetches the suggestion per id and calculates the amount to a contribution score
 function calculateContributionScore(userId, snapshot) {
     let score = 0;
     snapshot.forEach(childSnapshot => {
-        if (childSnapshot.val().userId === userId) {
+        if (childSnapshot.val().userId === userId && childSnapshot.val() != "") {
             score++;
         }
     });
     return score;
 }
-
+//userId getter function (assigns id if not done so already)
 function getUserId() {
   const storedUserId = localStorage.getItem('userId');
   if (storedUserId) {
@@ -26,9 +28,10 @@ function getUserId() {
     return createUserId();
   }
 }
-
+//
 const userId = getUserId();
 
+//firebase db parameters 
 const firebaseConfig = {
     apiKey: "AIzaSyAmtfD6pxasbfH4Iq6BhtA6JqEC7a7srt4",
     authDomain: "anarchychess-84371.firebaseapp.com",
@@ -39,11 +42,11 @@ const firebaseConfig = {
     appId: "1:626986551388:web:d36affbb80f1c5b20abe99",
     measurementId: "G-CD3QQCRQDC"
 };
-
+// app initialization and query of db
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
+//contains div elements to be accessible in js file. 
 const suggestionInput = document.getElementById('suggestionInput');
 const sendBtn = document.getElementById('sendBtn');
 const recentFeed = document.getElementById('recentFeed');
