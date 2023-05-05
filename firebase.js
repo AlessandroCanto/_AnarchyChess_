@@ -4,10 +4,11 @@ import { getDatabase, ref, push, set, onValue, query, limitToLast } from "https:
 
 // Your web app's Firebase configuration
 function createUserId() {
-  const userId = uuidv4();
+  const userId = uuid.v4();
   localStorage.setItem('userId', userId);
   return userId;
 }
+
 function calculateContributionScore(userId, snapshot) {
     let score = 0;
     snapshot.forEach(childSnapshot => {
