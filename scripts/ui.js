@@ -1,13 +1,5 @@
-/**
-Funcionality for user interface, creates dialogs, responds to click events, manages status bar, message box, and move box
-**/
-
 CHESSAPP.ui = (function(){
-	//Variable Declarations
-
-	/**
-	UI Chessboard fields
-	**/
+	// Chessboard UI Element
 	var uiComponents = {},
 	chessboard= null, //Chessboard object 
 	rightCol = null,
@@ -125,12 +117,7 @@ CHESSAPP.ui = (function(){
 
 		a.setAttribute("data-pieceType", "knight"); 
 		a.appendChild(document.createTextNode("Knight"));       
-		a2.setAttribute("data-pieceType", "bishop");    
-		a2.appendChild(document.createTextNode("Bishop"));    
-		a3.setAttribute("data-pieceType", "rook");
-		a3.appendChild(document.createTextNode("Rook")); 
-		a4.setAttribute("data-pieceType", "queen");
-		a4.appendChild(document.createTextNode("Queen")); 
+		
 
 
 		frag.appendChild(a);
