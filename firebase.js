@@ -1,8 +1,35 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
 import { getDatabase, ref, push, set, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+import { v4 as uuidv4 } from 'uuid';
 
 // Your web app's Firebase configuration
+function createUserId() {
+  const userId = uuidv4();
+  localStorage.setItem('userId', userId);
+  return userId;
+}
+function calculateContributionScore(userId, snapshot) {
+    let score = 0;
+    snapshot.forEach(childSnapshot => {
+        if (childSnapshot.val().userId === userId) {
+            score++;
+        }
+    });
+    return score;
+}
+
+function getUserId() {
+  const storedUserId = localStorage.getItem('userId');
+  if (storedUserId) {
+    return storedUserId;
+  } else {
+    return createUserId();
+  }
+}
+
+const userId = getUserId();
+
 const firebaseConfig = {
     apiKey: "AIzaSyAmtfD6pxasbfH4Iq6BhtA6JqEC7a7srt4",
     authDomain: "anarchychess-84371.firebaseapp.com",
@@ -28,7 +55,11 @@ const recentFeed = document.getElementById('recentFeed');
 function sendData() {
     const inputValue = suggestionInput.value;
     const newSuggestionRef = push(ref(db, 'suggestions'));
-    set(newSuggestionRef, inputValue);
+    const suggestionData = {
+        message: inputValue,
+        userId: userId
+    };
+    set(newSuggestionRef, suggestionData);
     suggestionInput.value = '';
 }
 
@@ -39,10 +70,15 @@ sendBtn.addEventListener('click', sendData);
 function updateRecentFeed(snapshot) {
     const suggestionItems = [];
     snapshot.forEach(childSnapshot => {
-        suggestionItems.unshift(`<div class="suggestion-item">${childSnapshot.val()}</div>`);
+        const data = childSnapshot.val();
+        suggestionItems.unshift(`<div class="suggestion-item">${data.userId}: ${data.message}</div>`);
     });
 
     recentFeed.innerHTML = suggestionItems.slice(0, 5).join('');
+
+    // Calculate and display the contribution score for the current user
+    const score = calculateContributionScore(userId, snapshot);
+    console.log(`Contribution score for user ${userId}: ${score}`);
 }
 
 // Listen for changes in the Firebase data
