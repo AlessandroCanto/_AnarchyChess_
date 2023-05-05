@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
 import { getDatabase, ref, push, set, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 
-// Your web app's Firebase configuration
 function createUserId() {
   const userId = uuid.v4();
   localStorage.setItem('userId', userId);
@@ -41,17 +40,14 @@ const firebaseConfig = {
     measurementId: "G-CD3QQCRQDC"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getDatabase(app);
 
-// Get references to the input box, send button, and recent feed div
 const suggestionInput = document.getElementById('suggestionInput');
 const sendBtn = document.getElementById('sendBtn');
 const recentFeed = document.getElementById('recentFeed');
 
-// Function to send data to Firebase
 function sendData() {
     const inputValue = suggestionInput.value;
     const newSuggestionRef = push(ref(db, 'suggestions'));
@@ -63,10 +59,6 @@ function sendData() {
     suggestionInput.value = '';
 }
 
-// Add a click event listener to the send button
-sendBtn.addEventListener('click', sendData);
-
-// Function to update the recent feed div
 function updateRecentFeed(snapshot) {
     const suggestionItems = [];
     snapshot.forEach(childSnapshot => {
@@ -75,14 +67,21 @@ function updateRecentFeed(snapshot) {
     });
 
     recentFeed.innerHTML = suggestionItems.slice(0, 5).join('');
-
-    // Calculate and display the contribution score for the current user
-    const score = calculateContributionScore(userId, snapshot);
-    const contributionScoreDiv = document.getElementById('contributionScore');
-    contributionScoreDiv.innerHTML = `Your contribution score is ${score}`;
 }
 
+function updateContributionScore() {
+    const suggestionsRef = ref(db, 'suggestions');
+    onValue(suggestionsRef, (snapshot) => {
+        const score = calculateContributionScore(userId, snapshot);
+        const contributionScoreDiv = document.getElementById('contributionScore');
+        contributionScoreDiv.innerHTML = `Your contribution score is ${score}`;
+    });
+}
 
-// Listen for changes in the Firebase data
+sendBtn.addEventListener('click', () => {
+    sendData();
+    updateContributionScore();
+});
+
 const suggestionsQuery = query(ref(db, 'suggestions'), limitToLast(5));
 onValue(suggestionsQuery, updateRecentFeed);
