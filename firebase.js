@@ -71,7 +71,7 @@ function updateRecentFeed(snapshot) {
     const suggestionItems = [];
     snapshot.forEach(childSnapshot => {
         const data = childSnapshot.val();
-        suggestionItems.unshift(`<div class="suggestion-item">${data.userId}: ${data.message}</div>`);
+        suggestionItems.unshift(`<div class="suggestion-item">${data.message}</div>`);
     });
 
     recentFeed.innerHTML = suggestionItems.slice(0, 5).join('');
