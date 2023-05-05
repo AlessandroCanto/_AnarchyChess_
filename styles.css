@@ -11,7 +11,9 @@
 	line-height: 0;
 	height: 0;
 }
-
+.recentFeed {
+   border: 4px solid #A40000;	
+}
 .container {
     margin: 0 auto;
     display: grid;
