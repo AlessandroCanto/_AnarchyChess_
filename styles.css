@@ -12,7 +12,9 @@
 	height: 0;
 }
 #recentFeed {
-   border: 4px solid #A40000;	
+  float: left;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #fff;
 }
 .container {
     margin: 0 auto;
