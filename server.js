@@ -58,29 +58,35 @@ console.log('HTTP server listening on port ' + port);
 
 // Game logic and socket handling code
 
-const queue = { U: [] };
+const queue = { W: [], B: [], U: [] };
 
 io.sockets.on('connection', function (sk) {
   console.log('web socket connection received');
 
   sk.on('setup', function (data) {
-    if (data.color === 'U') {
-      sk.on('disconnect', function () {
-        const index = queue['U'].indexOf(sk);
+    sk.on('disconnect', function () {
+      if (queue[data.color]) {
+        const index = queue[data.color].indexOf(sk);
         console.log('Removing player from queue');
-        queue['U'].splice(index, 1);
-      });
-
-      if (queue['U'].length >= 2) {
-        const player1 = queue['U'].shift();
-        const player2 = queue['U'].shift();
-        createGame(player1, player2);
-      } else {
-        queue['U'].push(sk);
+        queue[data.color].splice(index, 1);
       }
+    });
+
+    const opponentColor = data.color === 'W' ? 'B' : 'W';
+    const availableOpponent = queue[opponentColor].length > 0;
+
+    if (availableOpponent) {
+      const opponent = queue[opponentColor].shift();
+      createGame(sk, opponent);
+    } else if (queue.U.length > 0 && data.color !== 'U') {
+      const opponent = queue.U.shift();
+      createGame(sk, opponent);
+    } else {
+      queue[data.color || 'U'].push(sk);
     }
   });
 });
+
 function createGame(player1, player2) {
   player1.emit('matchfound', { color: 'W' });
   player2.emit('matchfound', { color: 'B' });
