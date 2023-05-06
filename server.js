@@ -64,24 +64,23 @@ io.sockets.on('connection', function (sk) {
   console.log('web socket connection received');
 
   sk.on('setup', function (data) {
-    sk.on('disconnect', function () {
-      if (queue['U']) {
+    if (data.color === 'U') {
+      sk.on('disconnect', function () {
         const index = queue['U'].indexOf(sk);
         console.log('Removing player from queue');
         queue['U'].splice(index, 1);
-      }
-    });
+      });
 
-    if (queue['U'].length >= 2) {
-      const player1 = queue['U'].shift();
-      const player2 = queue['U'].shift();
-      createGame(player1, player2);
-    } else {
-      queue['U'].push(sk);
+      if (queue['U'].length >= 2) {
+        const player1 = queue['U'].shift();
+        const player2 = queue['U'].shift();
+        createGame(player1, player2);
+      } else {
+        queue['U'].push(sk);
+      }
     }
   });
 });
-
 function createGame(player1, player2) {
   player1.emit('matchfound', { color: 'W' });
   player2.emit('matchfound', { color: 'B' });
