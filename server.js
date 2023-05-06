@@ -5,7 +5,7 @@ var app = require('http').createServer(handler),
 	//file module system for static files (HTML, CSS, JS, SVG and PNGs)
     fs = require("fs") ,
     url = require("url"),
-    port = process.env.PORT || 5000,
+    port =,
     
     queue = {
         'W': [],
