@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	background-color: #a80909;
+	color: whitesmoke;
+}
+
+.container {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 40px;
+	align-items: center;
+}
+
+nav {
+	padding: 5px 10px;
+	display: flex;
+	background-color: #333;
+	color: whitesmoke;
+	align-items: center;
+
+	grid-column: 1/-1;
+}
+
+h1 {
+	font-size: 25px;
+	padding-right: 5px;
+	border-right: solid whitesmoke 5px;
+	margin-right: 10px;
+}
+
+.logo {
+	font-size: 40px;
+}
+
+.other-pages {
+	display: flex;
+	gap: 15px;
+}
+
+a:link {
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+a:visited {
+	color: whitesmoke;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+a:active {
+	text-decoration: underline;
+}
+
+.pagetitle {
+	grid-column: 1/-1;
+	font-size: 85px;
+	text-align: center;
+	padding-bottom: 20px;
+	border-bottom: 20px solid #333;
+	margin-bottom: 40px;
+}
+
+h3 {
+	font-size: 80px;
+	text-align: center;
+}
+
+p {
+	font-size: 20px;
+	letter-spacing: 0.5px;
+	text-align: center;
+	line-height: 1.5;
+	margin: 0 30px;
+}
+
+footer {
+	grid-column: 1/-1;
+	justify-self: stretch;
+	height: 60px;
+	padding: 15px 10px;
+	background-color: #333;
+	display: flex;
+	align-content: center;
+}
