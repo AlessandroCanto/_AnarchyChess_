@@ -1,1 +1,112 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+	background-color: #a80909;
+	color: whitesmoke;
+}
+
+.container {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 56.5px 425px 60px;
+	gap: 40px;
+}
+
+nav {
+	padding: 5px 10px;
+	display: flex;
+	background-color: #333;
+	color: whitesmoke;
+	align-items: center;
+
+	grid-column: 1/-1;
+}
+
+h1 {
+	font-size: 25px;
+	padding-right: 5px;
+	border-right: solid whitesmoke 5px;
+	margin-right: 10px;
+}
+
+.logo {
+	font-size: 40px;
+}
+
+.other-pages {
+	display: flex;
+	gap: 15px;
+}
+
+a:link {
+	color: whitesmoke;
+	text-decoration: none;
+}
+
+a:visited {
+	color: whitesmoke;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+a:active {
+	text-decoration: underline;
+}
+
+.activity {
+	align-self: center;
+
+	margin-left: 30px;
+	margin-right: 30px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0px 40px;
+	grid-template-rows: 80px 1fr;
+	justify-items: center;
+	align-items: start;
+}
+
+h2 {
+	font-size: 35px;
+
+	text-align: center;
+}
+
+p {
+	font-size: 20px;
+	letter-spacing: 0.5px;
+	text-align: center;
+	line-height: 1.5;
+}
+
+footer {
+	grid-column: 1/-1;
+	justify-self: stretch;
+	height: 60px;
+	padding: 15px 10px;
+	background-color: #333;
+	display: flex;
+	align-content: center;
+}
+
+button {
+	font-size: 40px;
+	padding: 10px;
+	margin: 0 40px;
+	background-color: #333;
+	color: whitesmoke;
+}
+
+.button {
+	align-self: center;
+	justify-self: center;
+}
 
