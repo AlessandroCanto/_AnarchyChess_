@@ -1,12 +1,3 @@
-/**
-** Single object (namespace) handling websocket connections
-@namespace CHESSAPP
-*/
-
-/**
-*Chess Resource Folder
-* @property imageDir
-*/  
 
 var CHESSAPP = {};
 
