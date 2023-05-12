@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Anarchychess Rules</title>
 		<link href="rules.css" rel="stylesheet" />
+		<link href="background.css" rel="stylesheet" />
 	</head>
 	<body id="customization">
 		<div class="container">
@@ -77,7 +78,7 @@
 		</div>
 		<script> 
 		document.getElementById('colorInput').addEventListener('input', function() { 
-		document.body.style.backgroundColor = this.value;
+		document.getElementById('customization').style.backgroundColor = this.value;
 			});
 		</script>
 	</body>
