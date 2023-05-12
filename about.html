@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>About AnarchyChess</title>
 		<link href="about.css" rel="stylesheet" />
+		<link href="background.css" rel="stylesheet" />
 	</head>
 	<body>
 		<div class="container">
@@ -38,5 +39,20 @@
 			<h3 class="section">Our Mission</h3>
 			<footer><p>Email us at fakeemail123454321@anarchychess.com</p></footer>
 		</div>
+		<script> 
+		window.onload = function() {
+  		var colorInput = document.querySelector("#colorInput");
+ 		var customization = document.querySelector("#customization");
+ 		var savedColor = localStorage.getItem('bgColor');
+  		if (savedColor) {
+   		 customization.style.backgroundColor = savedColor;
+   		 colorInput.value = savedColor;
+  		} 
+  		colorInput.addEventListener("input", function() {
+   		customization.style.backgroundColor = colorInput.value;
+    		localStorage.setItem('bgColor', colorInput.value);
+ 		 });
+		};
+		</script>
 	</body>
 </html>
