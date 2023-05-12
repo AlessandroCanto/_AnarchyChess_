@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #a80909;
+    color: whitesmoke;
+}
+
+/* Creates nav bar/
+nav {
+    padding: 5px 10px;
+    display: flex;
+    background-color: #333;
+    align-items: center;
+
+    grid-column: 1/-1;
+    justify-self: stretch;
+}
+
+h1 {
+    font-size: 25px;
+    padding-right: 5px;
+    border-right: solid whitesmoke 5px;
+    margin-right: 10px;
+}
+
+.logo {
+    font-size: 40px;
+}
+
+.other-pages {
+    display: flex;
+    gap: 15px;
+}
+
+a:link {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a:visited {
+    color: whitesmoke;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+/Page layout*/
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: start;
+    gap: 40px;
+}
+
+.headersection {
+    grid-column: 1/-1;
+    text-align: center;
+    margin: 30px 40px;
+}
+.pagetitle {
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+.section {
+    margin: 20px 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: start;
+}
+
+h3 {
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+p {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+footer {
+    grid-column: 1/-1;
+    justify-self: stretch;
+    height: 60px;
+    padding: 15px 10px;
+    background-color: #333;
+    display: flex;
+    align-content: center;
+}
