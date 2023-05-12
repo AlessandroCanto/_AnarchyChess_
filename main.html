@@ -45,7 +45,9 @@
  		<script src="scripts/GamePlay.js"></script>
  		<script src="scripts/OnlinePlay.js"></script>
  		<script src="scripts/ui.js?v3"></script>
-		window.onload = function() {
+		
+		<script>
+			window.onload = function() {
   		var colorInput = document.querySelector("#colorInput");
  		var customization = document.querySelector("#customization");
  		var savedColor = localStorage.getItem('bgColor');
@@ -58,8 +60,6 @@
     		localStorage.setItem('bgColor', colorInput.value);
  		 });
 		};
-		<script>
-			
 			CHESSAPP.GamePlay.init(gameSettings);
 		</script>
 	</body>
