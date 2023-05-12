@@ -83,6 +83,17 @@
 		document.getElementById('colorInput').addEventListener('input', function() { 
 		document.getElementById('customization').style.backgroundColor = this.value;
 			});
+		window.onload = function() {
+  		var bGcolor = localStorage.getItem('backgroundColor');
+    		if (bgColor) {
+       			 document.getElementById('customization').style.backgroundColor = bgColor;
+        		document.getElementById('colorInput').value = bgColor;
+    			}
+		};
+		document.getElementById('colorInput').addEventListener('input', function() {
+    			localStorage.setItem('backgroundColor', this.value);
+    		document.getElementById('customization').style.backgroundColor = this.value;
+		});
 		</script>
 	</body>
 </html>
