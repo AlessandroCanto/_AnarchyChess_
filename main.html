@@ -6,6 +6,7 @@
 		<meta name="description" content="Chess application">
 		<meta name="author" content="Sussy Backa">
 		<link href='styles.css?v3' rel='stylesheet' type='text/css'>
+		<link href='background.css?v3' rel='stylesheet' type='text/css'>
 		
 	</head>
 	<body>
@@ -43,6 +44,19 @@
  		<script src="scripts/GamePlay.js"></script>
  		<script src="scripts/OnlinePlay.js"></script>
  		<script src="scripts/ui.js?v3"></script>
+		window.onload = function() {
+  		var colorInput = document.querySelector("#colorInput");
+ 		var customization = document.querySelector("#customization");
+ 		var savedColor = localStorage.getItem('bgColor');
+  		if (savedColor) {
+   		 customization.style.backgroundColor = savedColor;
+   		 colorInput.value = savedColor;
+  		} 
+  		colorInput.addEventListener("input", function() {
+   		customization.style.backgroundColor = colorInput.value;
+    		localStorage.setItem('bgColor', colorInput.value);
+ 		 });
+		};
 		<script>
 			
 			CHESSAPP.GamePlay.init(gameSettings);
