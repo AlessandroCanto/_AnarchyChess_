@@ -4,12 +4,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: sans-serif;
-	background-color: #a80909;
-	color: whitesmoke;
-}
-
 .container {
 	margin: 0 auto;
 	display: grid;
