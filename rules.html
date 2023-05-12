@@ -71,7 +71,13 @@
 					to the C2 square in any situation.
 				</p>
 			</div>
+			<input id="colorInput" type="color">
 			<footer><p>Email us at fakeemail123454321@anarchychess.com</p></footer>
 		</div>
+		<script> 
+		document.getElementById('colorInput').addEventListener('input', function() { 
+		document.body.style.backgroundColor = this.value;
+			});
+		</script>
 	</body>
 </html>
