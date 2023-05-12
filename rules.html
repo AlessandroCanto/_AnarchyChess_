@@ -80,17 +80,22 @@
 		document.getElementById('colorInput').addEventListener('input', function() { 
 		document.getElementById('customization').style.backgroundColor = this.value;
 			});
+		document.getElementById('colorInput').addEventListener('input', function() { 
+		document.getElementById('customization').style.backgroundColor = this.value;
+			});
 		window.onload = function() {
-  		var bgcolor = localStorage.getItem('backgroundColor');
-    		if (bgColor) {
-       			 document.getElementById('customization').style.backgroundColor = bgColor;
-        		document.getElementById('colorInput').value = bgColor;
-    			}
+  		var colorInput = document.querySelector("#colorInput");
+ 		var customization = document.querySelector("#customization");
+ 		var savedColor = localStorage.getItem('bgColor');
+  		if (savedColor) {
+   		 customization.style.backgroundColor = savedColor;
+   		 colorInput.value = savedColor;
+  		} 
+  		colorInput.addEventListener("input", function() {
+   		customization.style.backgroundColor = colorInput.value;
+    		localStorage.setItem('bgColor', colorInput.value);
+ 		 });
 		};
-		document.getElementById('colorInput').addEventListener('input', function() {
-    			localStorage.setItem('backgroundColor', this.value);
-    		document.getElementById('customization').style.backgroundColor = this.value;
-		});
 		</script>
 	</body>
 </html>
