@@ -4,13 +4,7 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: sans-serif;
-    background-color: #a80909;
-    color: whitesmoke;
-}
 
-/* Creates nav bar*/
 nav {
     padding: 5px 10px;
     display: flex;
