@@ -10,7 +10,7 @@ body {
     color: whitesmoke;
 }
 
-/* Creates nav bar/
+
 nav {
     padding: 5px 10px;
     display: flex;
@@ -54,7 +54,7 @@ a:active {
     text-decoration: underline;
 }
 
-/Page layout*/
+
 
 .container {
     display: grid;
