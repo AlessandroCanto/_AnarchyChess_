@@ -314,8 +314,8 @@ CHESSAPP.Analyzer ={
 				else{
 					//normal checks
 					if ((curx - 1 != 2 || cury + 1 != 1) && (curx - 1 != 2 || cury + 1 != 6)) mk(curx - 1, cury + 1, true, true);
-        			if ((curx - 1 != 2 || cury != 1) && (curx - 1 != 2 || cury != 6)) mk(curx - 1, cury, true, true);
-       				if ((curx - 1 != 2 || cury - 1 != 1) && (curx - 1 != 2 || cury - 1 != 6)) mk(curx - 1, cury - 1, true, true);
+        				if ((curx - 1 != 2 || cury != 1) && (curx - 1 != 2 || cury != 6)) mk(curx - 1, cury, true, true);
+       					if ((curx - 1 != 2 || cury - 1 != 1) && (curx - 1 != 2 || cury - 1 != 6)) mk(curx - 1, cury - 1, true, true);
 					if ((curx + 1 != 2 || cury + 1 != 1) && (curx + 1 != 2 || cury + 1 != 6)) mk(curx + 1, cury + 1, true, true);
 					if ((curx + 1 != 2 || cury != 1) && (curx + 1 != 2 || cury != 6)) mk(curx + 1, cury, true, true);
 					if ((curx + 1 != 2 || cury - 1 != 1) && (curx + 1 != 2 || cury - 1 != 6)) mk(curx + 1, cury - 1, true, true);
@@ -429,13 +429,6 @@ CHESSAPP.Analyzer ={
 	withinBounds : function(x,y){
 		return ((x >= 0 && x <= 7) && (y >= 0 && y <= 7));
 	},
-	/*
-	 * When making an option for a piece, it checks if making that move would leave the players king in check.
-	 * Therefore, for each option a piece has, every permutation of moves on the opponents team must be checked to see
-	 * if it would leave that players king in check. If it would, then it is an invalid move.
-	 *
-	 * This function does the work of a virtual board checking if the potential new state of the board would leave the player's king in check
-	 */
 	makeOption : function(settings){
 		var stg = {
 			pieces: null,//set of pieces
